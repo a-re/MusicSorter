@@ -66,7 +66,7 @@ namespace Music_sorter
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            if (!File.Exists(Application.StartupPath + "\\utils\\adb.exe") || !File.Exists(Application.StartupPath + "\\utils\\AdbWinApi.dll"))
+            if (!File.Exists(Application.StartupPath + @"\utils\adb.exe") || !File.Exists(Application.StartupPath + @"\utils\AdbWinApi.dll"))
             {
                 MessageBox.Show("A required component could not be found. Please reinstall the program.", "Fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
@@ -189,7 +189,7 @@ namespace Music_sorter
         #region Experimental!
         public void RunProc(object psi)
         {
-            Process proc = new Process();
+            var proc = new Process();
             proc.StartInfo = (ProcessStartInfo) psi;
             proc.EnableRaisingEvents = true;
             proc.ErrorDataReceived += proc_DataReceived;
