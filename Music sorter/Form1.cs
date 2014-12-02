@@ -87,22 +87,20 @@ namespace Music_sorter
                 switch (i)
                 {
                     case 0:
-                        adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
+                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
                         break;
                     case 1:
-                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
+                        adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
                         break;
                     case 2:
-                        adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
+                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
                         break;
                     case 3:
-                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
-                        break;
-                    case 4:
                         adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
                         break;
+                    case 4:
+                        break;
                     case 5:
-                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
                         break;
                     case 6:
                         break;
@@ -113,11 +111,9 @@ namespace Music_sorter
                     case 9:
                         break;
                 }
-
-                while (!hasFinished) { }
             }
         }
-
+         
         private void btnSort_Click(object sender, EventArgs e)
         {
             progress.Visible = true;
@@ -233,7 +229,7 @@ namespace Music_sorter
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
 
-            //while (!proc.HasExited) { }
+            proc.WaitForExit();
 
             hasFinished = true;
         }
