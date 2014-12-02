@@ -150,6 +150,7 @@
             this.txtDebug.Name = "txtDebug";
             this.txtDebug.Size = new System.Drawing.Size(407, 157);
             this.txtDebug.TabIndex = 9;
+            this.txtDebug.TextChanged += new System.EventHandler(this.txtDebug_TextChanged);
             // 
             // button1
             // 

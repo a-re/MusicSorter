@@ -284,5 +284,11 @@ namespace Music_sorter
             return ret;
         }
         #endregion
+
+        private void txtDebug_TextChanged(object sender, EventArgs e)
+        {
+            txtDebug.Select(txtDebug.TextLength + 1, 0);
+            txtDebug.ScrollToCaret();
+        }
     }
 }
