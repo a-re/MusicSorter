@@ -17,5 +17,14 @@ namespace Music_sorter.Utils
             RedirectStandardOutput = true,
             RedirectStandardError = true
         };
+        public static readonly ProcessStartInfo ADB_KILL_SERVER = new ProcessStartInfo
+        {
+            FileName = Application.StartupPath + "\\utils\\adb.exe",
+            Arguments = "kill-server",
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            RedirectStandardOutput = true,
+            RedirectStandardError = true
+        };
     }
 }

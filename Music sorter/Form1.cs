@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Threading;
-using System.Reflection;
+using System.Diagnostics;
 using System.IO;
-
+using System.Reflection;
+using System.Threading;
+using System.Windows.Forms;
 namespace Music_sorter
 {
     public partial class Form1 : Form
@@ -176,7 +171,12 @@ namespace Music_sorter
         {
             txtDebug.Text += txt;
         }
+        #region Experimental!
+        public void RunProc(ProcessStartInfo psi)
+        {
 
+        }
+        #endregion
         #region Thread-Safety
         // UpdateProp() and UpdatePropStatus() allows for cross-threaded updates to the GUI, but it's ugly code.
         private delegate void TSDelegate(Control control, string propertyName, object propertyValue);
