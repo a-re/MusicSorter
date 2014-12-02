@@ -75,7 +75,6 @@ namespace Music_sorter
             AddText("Music sorter for Google Play!" + nl);
             AddText("by Alex Restifo" + nl);
             AddText("----------------------------------" + nl + nl);
-            MessageBox.Show("")
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -135,8 +134,8 @@ namespace Music_sorter
             }
             DoFindMusic(parentDir);
 
-            UpdateProp(txtDebug, "Text", musicFiles.Count + " songs detected!" + nl + nl);
-            UpdateProp(txtDebug, "Text", "----------------------------" + nl + nl);
+            UpdateProp(txtDebug, "Text", GetDebugText() + musicFiles.Count + " songs detected!" + nl + nl);
+            UpdateProp(txtDebug, "Text", GetDebugText() + "----------------------------" + nl + nl);
 
             UpdatePropStatus(progress, "Maximum", musicFiles.Count);
             DoCopyFiles();
@@ -196,7 +195,7 @@ namespace Music_sorter
                 musicFilesNew.Add(outputDir + "\\" + name); //This is adding to a list which contains the locations of the NEW music files AFTER they are copied
                 File.Copy(s, outputDir + "\\" + name, true);
 
-                UpdateProp(txtDebug, "Text", "Copied file " + i + "!" + nl);
+                UpdateProp(txtDebug, "Text", GetDebugText() + "Copied file " + i + "!" + nl);
                 UpdatePropStatus(txtProgress, "Text", "Copied file " + i + "/" + musicFiles.Count);
                 UpdatePropStatus(progress, "Value", i);
                 i++;
@@ -229,14 +228,13 @@ namespace Music_sorter
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
 
-            while (!proc.HasExited) { }
+            //while (!proc.HasExited) { }
 
             hasFinished = true;
         }
 
         private void proc_DataReceived(object sender, DataReceivedEventArgs e)
         {
-            MessageBox.Show(e.Data);
             UpdateProp(txtDebug, "Text", GetDebugText() + e.Data + nl);
         }
         #endregion
