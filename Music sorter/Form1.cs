@@ -66,6 +66,9 @@ namespace Music_sorter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            long start = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            foreach (Process p in Process.GetProcessesByName("adb.exe")) { p.Kill(); } /* Kill adb before anything starts */
+
             if (!File.Exists(Application.StartupPath + @"\utils\adb.exe") || !File.Exists(Application.StartupPath + @"\utils\AdbWinApi.dll"))
             {
                 MessageBox.Show("A required component could not be found. Please reinstall the program.", "Fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,40 +78,22 @@ namespace Music_sorter
             AddText("Music sorter for Google Play!" + nl);
             AddText("by Alex Restifo" + nl);
             AddText("----------------------------------" + nl + nl);
+            long stop = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
+            Console.WriteLine("Initialization took " + (stop - start) + "ms");
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             /* Oh god more threading... we need a dedicated ADB thread..... */
             ParameterizedThreadStart threadStart = new ParameterizedThreadStart(RunProc);
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Thread adbThread = new Thread(threadStart);
                 switch (i)
                 {
                     case 0:
                         adbThread.Start(ADBProcInfo.ADB_START_SERVER);
-                        break;
-                    case 1:
-                        adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
-                        break;
-                    case 2:
-                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
-                        break;
-                    case 3:
-                        adbThread.Start(ADBProcInfo.ADB_KILL_SERVER);
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        break;
-                    case 9:
                         break;
                 }
             }

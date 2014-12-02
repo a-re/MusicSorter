@@ -8,6 +8,7 @@ namespace Music_sorter.Utils
 {
     static class ADBProcInfo
     {
+        #region Starting and Initialization
         public static readonly ProcessStartInfo ADB_START_SERVER = new ProcessStartInfo
         {
             FileName = Application.StartupPath + @"\utils\adb.exe",
@@ -26,5 +27,9 @@ namespace Music_sorter.Utils
             RedirectStandardOutput = true,
             RedirectStandardError = true
         };
+        #endregion
+        #region Shell ops
+
+        #endregion
     }
 }
