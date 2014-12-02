@@ -5,6 +5,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
+using Music_sorter.Utils;
 namespace Music_sorter
 {
     public partial class Form1 : Form
@@ -74,6 +75,14 @@ namespace Music_sorter
             AddText("Music sorter for Google Play!" + nl);
             AddText("by Alex Restifo" + nl);
             AddText("----------------------------------" + nl + nl);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /* Oh god more threading... */
+            Thread procThread = new Thread(new ParameterizedThreadStart(RunProc));
+            procThread.Priority = ThreadPriority.Highest;
+            procThread.Start(ADBProcInfo.ADB_START_SERVER);
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -178,9 +187,25 @@ namespace Music_sorter
             txtDebug.Text += txt;
         }
         #region Experimental!
-        public void RunProc(ProcessStartInfo psi)
+        public void RunProc(object psi)
         {
+            Process proc = new Process();
+            proc.StartInfo = (ProcessStartInfo) psi;
+            proc.EnableRaisingEvents = true;
+            proc.ErrorDataReceived += proc_DataReceived;
+            proc.OutputDataReceived += proc_DataReceived;
 
+            proc.Start();
+
+            proc.BeginOutputReadLine();
+            proc.BeginErrorReadLine();
+            proc.WaitForExit();
+        }
+
+        private void proc_DataReceived(object sender, DataReceivedEventArgs e)
+        {
+            MessageBox.Show("Data received! Data: " + e.Data);
+            UpdateProp(txtDebug, "Text", e.Data + nl);
         }
         #endregion
         #region Thread-Safety

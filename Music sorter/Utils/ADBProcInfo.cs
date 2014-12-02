@@ -10,7 +10,7 @@ namespace Music_sorter.Utils
     {
         public static readonly ProcessStartInfo ADB_START_SERVER = new ProcessStartInfo
         {
-            FileName = Application.StartupPath + "\\utils\\adb.exe",
+            FileName = Application.StartupPath + @"utils\adb.exe",
             Arguments = "start-server",
             UseShellExecute = false,
             CreateNoWindow = true,
@@ -19,7 +19,7 @@ namespace Music_sorter.Utils
         };
         public static readonly ProcessStartInfo ADB_KILL_SERVER = new ProcessStartInfo
         {
-            FileName = Application.StartupPath + "\\utils\\adb.exe",
+            FileName = Application.StartupPath + @"\utils\adb.exe",
             Arguments = "kill-server",
             UseShellExecute = false,
             CreateNoWindow = true,
