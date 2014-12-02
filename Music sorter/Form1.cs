@@ -75,6 +75,7 @@ namespace Music_sorter
             AddText("Music sorter for Google Play!" + nl);
             AddText("by Alex Restifo" + nl);
             AddText("----------------------------------" + nl + nl);
+            MessageBox.Show("")
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -236,7 +237,7 @@ namespace Music_sorter
         private void proc_DataReceived(object sender, DataReceivedEventArgs e)
         {
             MessageBox.Show(e.Data);
-            UpdateProp(txtDebug, "Text", e.Data + nl);
+            UpdateProp(txtDebug, "Text", GetDebugText() + e.Data + nl);
         }
         #endregion
         #region Thread-Safety
@@ -268,6 +269,16 @@ namespace Music_sorter
                 PropertyInfo p = t.GetProperty(propertyName);
                 p.SetValue(toolstripItem, propertyValue, null);
             }
+        }
+
+        private string GetDebugText()
+        {
+            string ret = "";
+            txtDebug.Invoke(new MethodInvoker(delegate
+            {
+                ret = txtDebug.Text;
+            }));
+            return ret;
         }
         #endregion
     }
