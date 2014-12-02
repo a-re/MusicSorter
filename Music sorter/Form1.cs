@@ -18,7 +18,7 @@ namespace Music_sorter
         string nl = Environment.NewLine;
         List<string> musicFiles = new List<string>();
         List<string> musicFilesNew = new List<string>();
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -79,10 +79,11 @@ namespace Music_sorter
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /* Oh god more threading... */
-            Thread procThread = new Thread(new ParameterizedThreadStart(RunProc));
-            procThread.Priority = ThreadPriority.Highest;
-            procThread.Start(ADBProcInfo.ADB_START_SERVER);
+            /* Oh god more threading... we need a dedicated ADB thread..... */
+            Thread adbThread = new Thread(new ParameterizedThreadStart(RunProc));
+            adbThread.Start(ADBProcInfo.ADB_START_SERVER);
+
+            Thread deviceThread = new Thread(new para)
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -200,11 +201,14 @@ namespace Music_sorter
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
             proc.WaitForExit();
+            while (!proc.HasExited)
+            {
+                Thread.Sleep(100);
+            }
         }
 
         private void proc_DataReceived(object sender, DataReceivedEventArgs e)
         {
-            MessageBox.Show("Data received! Data: " + e.Data);
             UpdateProp(txtDebug, "Text", e.Data + nl);
         }
         #endregion
