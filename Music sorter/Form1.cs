@@ -65,6 +65,12 @@ namespace Music_sorter
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (!File.Exists(Application.StartupPath + "\\utils\\adb.exe") || !File.Exists(Application.StartupPath + "\\utils\\AdbWinApi.dll"))
+            {
+                MessageBox.Show("A required component could not be found. Please reinstall the program.", "Fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+
             AddText("Music sorter for Google Play!" + nl);
             AddText("by Alex Restifo" + nl);
             AddText("----------------------------------" + nl + nl);

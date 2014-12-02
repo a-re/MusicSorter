@@ -40,6 +40,7 @@
             this.txtProgress = new System.Windows.Forms.ToolStripStatusLabel();
             this.progress = new System.Windows.Forms.ToolStripProgressBar();
             this.txtDebug = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +108,7 @@
             this.btnSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSort.Location = new System.Drawing.Point(6, 49);
             this.btnSort.Name = "btnSort";
-            this.btnSort.Size = new System.Drawing.Size(407, 63);
+            this.btnSort.Size = new System.Drawing.Size(324, 63);
             this.btnSort.TabIndex = 6;
             this.btnSort.Text = "Start";
             this.btnSort.UseVisualStyleBackColor = true;
@@ -150,11 +151,21 @@
             this.txtDebug.Size = new System.Drawing.Size(407, 157);
             this.txtDebug.TabIndex = 9;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(336, 49);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 63);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Test!";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 302);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtDebug);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnSort);
@@ -189,6 +200,7 @@
         private System.Windows.Forms.ToolStripStatusLabel txtProgress;
         private System.Windows.Forms.ToolStripProgressBar progress;
         private System.Windows.Forms.TextBox txtDebug;
+        private System.Windows.Forms.Button button1;
     }
 }
 
