@@ -12,7 +12,7 @@ namespace Music_sorter
     {
         bool t1 = false;
         bool t2 = false;
-
+        bool hasFinished = false;
         string inputDir;
         string outputDir;
         string nl = Environment.NewLine;
@@ -80,10 +80,37 @@ namespace Music_sorter
         private void button1_Click(object sender, EventArgs e)
         {
             /* Oh god more threading... we need a dedicated ADB thread..... */
-            Thread adbThread = new Thread(new ParameterizedThreadStart(RunProc));
-            adbThread.Start(ADBProcInfo.ADB_START_SERVER);
+            ParameterizedThreadStart threadStart = new ParameterizedThreadStart(RunProc);
+            for (int i = 0; i < 10; i++)
+            {
+                Thread adbThread = new Thread(threadStart);
+                switch (i)
+                {
+                    case 0:
+                        adbThread.Start(ADBProcInfo.ADB_START_SERVER);
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                    case 6:
+                        break;
+                    case 7:
+                        break;
+                    case 8:
+                        break;
+                    case 9:
+                        break;
+                }
 
-            Thread deviceThread = new Thread(new para)
+                while (!hasFinished) { }
+            }
         }
 
         private void btnSort_Click(object sender, EventArgs e)
@@ -200,15 +227,15 @@ namespace Music_sorter
 
             proc.BeginOutputReadLine();
             proc.BeginErrorReadLine();
-            proc.WaitForExit();
-            while (!proc.HasExited)
-            {
-                Thread.Sleep(100);
-            }
+
+            while (!proc.HasExited) { }
+
+            hasFinished = true;
         }
 
         private void proc_DataReceived(object sender, DataReceivedEventArgs e)
         {
+            MessageBox.Show(e.Data);
             UpdateProp(txtDebug, "Text", e.Data + nl);
         }
         #endregion
