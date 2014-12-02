@@ -36,10 +36,10 @@
             this.btnBrowse2 = new System.Windows.Forms.Button();
             this.btnBrowse1 = new System.Windows.Forms.Button();
             this.btnSort = new System.Windows.Forms.Button();
-            this.txtDebug = new System.Windows.Forms.RichTextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.txtProgress = new System.Windows.Forms.ToolStripStatusLabel();
             this.progress = new System.Windows.Forms.ToolStripProgressBar();
+            this.txtDebug = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,17 +113,6 @@
             this.btnSort.UseVisualStyleBackColor = true;
             this.btnSort.Click += new System.EventHandler(this.btnSort_Click);
             // 
-            // txtDebug
-            // 
-            this.txtDebug.BackColor = System.Drawing.Color.Black;
-            this.txtDebug.ForeColor = System.Drawing.Color.Lime;
-            this.txtDebug.Location = new System.Drawing.Point(6, 118);
-            this.txtDebug.Name = "txtDebug";
-            this.txtDebug.ReadOnly = true;
-            this.txtDebug.Size = new System.Drawing.Size(407, 157);
-            this.txtDebug.TabIndex = 7;
-            this.txtDebug.Text = "";
-            // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -151,13 +140,23 @@
             this.progress.Size = new System.Drawing.Size(100, 18);
             this.progress.Visible = false;
             // 
+            // txtDebug
+            // 
+            this.txtDebug.BackColor = System.Drawing.Color.Black;
+            this.txtDebug.ForeColor = System.Drawing.Color.Lime;
+            this.txtDebug.Location = new System.Drawing.Point(6, 118);
+            this.txtDebug.Multiline = true;
+            this.txtDebug.Name = "txtDebug";
+            this.txtDebug.Size = new System.Drawing.Size(407, 157);
+            this.txtDebug.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 302);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.txtDebug);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnSort);
             this.Controls.Add(this.btnBrowse1);
             this.Controls.Add(this.btnBrowse2);
@@ -186,10 +185,10 @@
         private System.Windows.Forms.Button btnBrowse2;
         private System.Windows.Forms.Button btnBrowse1;
         private System.Windows.Forms.Button btnSort;
-        private System.Windows.Forms.RichTextBox txtDebug;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel txtProgress;
         private System.Windows.Forms.ToolStripProgressBar progress;
+        private System.Windows.Forms.TextBox txtDebug;
     }
 }
 
